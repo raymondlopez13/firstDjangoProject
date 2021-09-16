@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+View List
+{% endblock %}
+
+{% block content %}
+    <button type='submit' name='backBtn' value='backBtn' onClick="javascript:location.href = '/view';" class='btn btn-primary'>Back</button>
+    <h1>{{ls.name}}</h1>
+    <form method="post" action='#'>
+        {% csrf_token %}
+        <ul>
+            {% for item in ls.item_set.all %}
+                {% if not item.complete %}
+                <li class='input-group-text mt-1 w-fit-content p-3'><input type='checkbox' value='clicked' name='c{{item.id}}' class='form-check-input'>{{item.text}}</li>
+                {% else %}
+                <li class='input-group-text mt-1 w-fit-content p-3'><input type='checkbox' value='clicked' name='c{{item.id}}'  class='form-check-input'  value='' checked>{{item.text}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <button type='submit' name='save' value='save' class='btn btn-primary'>Save</button>
+        <input type='text' name='new'>
+        <button type='submit' name='newItem' value='newItem' class='btn btn-primary'>Add Item</button>
+    </form>
+    
+    
+{% endblock %}

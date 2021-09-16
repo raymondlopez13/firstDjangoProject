@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Select To Do List
+{% endblock %}
+
+{% block content %}
+ <h2>Select To Do List:</h2>
+ <ul>
+    {% for item in ls %}
+        <li><a href='/view/{{item.id}}'>{{ item }}</a></li>
+    {% endfor %}
+ </ul>
+{% endblock %}
